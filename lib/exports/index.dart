@@ -1,6 +1,7 @@
 export 'binding_exports.dart';
 export 'controller_exports.dart';
 export 'view_exports.dart';
+export 'custom_template_widgets_exports.dart';
 export 'model_exports.dart';
 export 'utils_exports.dart';
 export 'pub_widgets.dart';

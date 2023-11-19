@@ -1,111 +1,29 @@
+import 'package:assets_audio_player/assets_audio_player.dart';
+
 import '../exports/index.dart';
 
 class SplashScreen extends StatelessWidget {
-  static const String routeName = '/splashScreen';
+  static const String routeName = '/';
 
   const SplashScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return _buildSplashBody(context);
+    return AnimatedSplashScreen(
+        splash: _buildSplashBody(context),
+        nextScreen: const LoginScreen(),
+        splashIconSize: Get.height,
+        duration: 1000,
+        disableNavigation: false,
+        backgroundColor: const Color(0xff16072D));
   }
 
   Widget _buildSplashBody(BuildContext context) {
     return Scaffold(
-        body: Stack(
+        body: SplashTemplate(
+      isShowLetters: true,
+      isShowPurplePlanet: true,
       children: [
-        //background dark //
-        Positioned(
-          height: Get.height,
-          width: Get.width,
-          child: Image.asset(
-            "assets/images/splash_screen/splash dark background.png",
-            fit: BoxFit.fitWidth,
-          ),
-        ),
-        //background Stars //
-        Positioned(
-          height: Get.height,
-          width: Get.width,
-          child: Image.asset(
-            "assets/images/splash_screen/splash stars.png",
-            fit: BoxFit.fitWidth,
-          ),
-        ),
-        // W //
-        Positioned(
-          bottom: 210,
-          right: 0,
-          child: Image.asset(
-            "assets/images/splash_screen/w.png",
-            fit: BoxFit.fitWidth,
-          ),
-        ),
-        //BiG planet //
-        Positioned(
-          bottom: 0,
-          right: 0,
-          child: Image.asset(
-            "assets/images/splash_screen/Big Planet 2.png",
-          ),
-        ),
-        // Z//
-        Positioned(
-          top: 5,
-          left: 85,
-          child: Image.asset(
-            "assets/images/splash_screen/Z.png",
-          ),
-        ),
-        //Purple Planet //
-        Positioned(
-          top: 0,
-          left: 0,
-          child: Image.asset(
-            "assets/images/splash_screen/Purple Planet.png",
-          ),
-        ),
-        // A //
-        Positioned(
-          bottom: 15,
-          left: 15,
-          child: Image.asset(
-            "assets/images/splash_screen/A.png",
-          ),
-        ),
-        // E //
-        Positioned(
-          top: 300,
-          left: 0,
-          child: Image.asset(
-            "assets/images/splash_screen/E.png",
-          ),
-        ),
-        // S //
-        Positioned(
-          top: 130,
-          right: 0,
-          child: Image.asset(
-            "assets/images/splash_screen/S.png",
-          ),
-        ),
-        // Blue Planet //
-        Positioned(
-          top: 180,
-          right: 0,
-          child: Image.asset(
-            "assets/images/splash_screen/Blue Planet 2.png",
-          ),
-        ),
-        // Blue Gem 1 //
-        Positioned(
-          top: 50,
-          right: 80,
-          child: Image.asset(
-            "assets/images/splash_screen/Blue Gem 1.png",
-          ),
-        ),
-        // Blue Gem 2 //
         Positioned(
           bottom: 180,
           left: -5,
@@ -113,23 +31,22 @@ class SplashScreen extends StatelessWidget {
             "assets/images/splash_screen/Blue Gem 2.png",
           ),
         ),
-
-        //Logo //
-        Positioned(
-          bottom: 180,
-          left: -5,
-          child: Image.asset(
-            "assets/images/splash_screen/Blue Gem 2.png",
-          ),
-        ),
-        //Game Name //
+        //Logo  & Name//
         Center(
           child: Column(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Image.asset(
-                "assets/images/logo.png",
+              TweenAnimationBuilder<double>(
+                tween: Tween<double>(begin: 0.0, end: 2),
+                duration: const Duration(seconds: 5),
+                builder: (context, value, _) => AnimatedRotation(
+                  turns: value,
+                  duration: const Duration(milliseconds: 500),
+                  child: Image.asset(
+                    "assets/images/logo.png",
+                  ),
+                ),
               ),
               const SizedBox(
                 height: 20,
@@ -154,8 +71,8 @@ class SplashScreen extends StatelessWidget {
           child: ClipRRect(
             borderRadius: BorderRadius.circular(20),
             child: TweenAnimationBuilder<double>(
-                tween: Tween<double>(begin: 0.0, end: 1),
-                duration: const Duration(seconds: 5),
+                tween: Tween<double>(begin: 0.0, end: 2),
+                duration: const Duration(seconds: 4),
                 builder: (context, value, _) => LinearProgressIndicator(
                       color: const Color(0xff18B6F3),
                       backgroundColor: const Color(0xff16072D),
@@ -168,10 +85,3 @@ class SplashScreen extends StatelessWidget {
     ));
   }
 }
-
-// AnimatedSplashScreen(
-//         splash: _buildSplashBody(context),
-//         nextScreen: const Home(),
-//         splashTransition: SplashTransition.slideTransition,
-//         splashIconSize: Get.height,
-//         backgroundColor: const Color(0xff16072D));
