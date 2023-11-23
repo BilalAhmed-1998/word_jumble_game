@@ -1,6 +1,8 @@
 import 'exports/index.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  LoginScreenBinding().dependencies();
   runApp(const MyApp());
 }
 
@@ -13,15 +15,19 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       title: 'World Jumble Game',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+      theme: myTheme,
       initialRoute: AppRoutes.SPLASH,
-        getPages: AppPages.pages,
+      getPages: AppPages.pages,
       defaultTransition: Transition.cupertino,
-      smartManagement: SmartManagement.full,
     );
   }
 }
 
-
+final ThemeData myTheme = ThemeData(
+  textTheme: const TextTheme(
+    bodyMedium: TextStyle(
+      decoration: TextDecoration.none,
+      fontFamily: 'Inter',
+    ),
+  ),
+);
